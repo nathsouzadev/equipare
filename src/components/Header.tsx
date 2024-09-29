@@ -1,5 +1,5 @@
 import { UserButton } from '@clerk/nextjs';
-import { MenuIcon, Sidebar } from 'lucide-react';
+import { MenuIcon } from 'lucide-react';
 import { Button } from './ui/button';
 import { Sheet, SheetContent, SheetTrigger } from './ui/sheet';
 import Link from 'next/link';
@@ -10,6 +10,7 @@ import {
   DialogDescription,
   DialogTrigger,
 } from './ui/dialog';
+import Sidebar from './Sidebar';
 
 const Header = () => {
   return (
