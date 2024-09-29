@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useUser } from '@clerk/nextjs';
+import { UserButton, useUser } from '@clerk/nextjs';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -16,9 +16,11 @@ import {
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import {
   CheckCircle2Icon,
-  HomeIcon,
-  BriefcaseIcon,
+  MenuIcon,
 } from 'lucide-react';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import Sidebar from '@/components/Sidebar';
+import { cn } from '@/lib/utils';
 
 const initialJobOpportunities = [
   {
@@ -101,35 +103,40 @@ const DashboardPage = () => {
 
   return (
     <div className='flex flex-col min-h-screen'>
-      <header className='px-4 lg:px-6 h-14 flex items-center'>
-        <Link href='/' className='flex items-center justify-center'>
+      <header className='px-4 lg:px-6 h-14 flex items-center border-b'>
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button
+              variant='ghost'
+              className='lg:hidden'
+              size='icon'
+              aria-label='Open menu'
+            >
+              <MenuIcon className='h-6 w-6' />
+            </Button>
+          </SheetTrigger>
+          <SheetContent side='left' className='w-64'>
+            <Sidebar />
+          </SheetContent>
+        </Sheet>
+        <Link
+          href='/'
+          className='flex items-center justify-center ml-4 lg:ml-0'
+        >
           <span className=''>Equipare</span>
         </Link>
+        <div className='ml-auto'>
+          <UserButton />
+        </div>
       </header>
 
       <div className='flex-1 flex'>
-        {/* Lateral Menu */}
-        <aside className='w-64 bg-gray-100 p-4'>
-          <nav className='space-y-2'>
-            <Link
-              href='/dashboard/offers'
-              className='flex items-center space-x-2 p-2 hover:bg-gray-200 rounded'
-            >
-              <BriefcaseIcon className='h-5 w-5' />
-              <span>Oportunidades</span>
-            </Link>
-            <Link
-              href='/dashboard/companys'
-              className='flex items-center space-x-2 p-2 hover:bg-gray-200 rounded'
-            >
-              <HomeIcon className='h-5 w-5' />
-              <span>Empresas</span>
-            </Link>
-          </nav>
+        <aside className='w-64 border-r bg-gray-100 p-4 hidden lg:block'>
+          <Sidebar />
         </aside>
 
         {/* Main Content */}
-        <main className='flex-1 p-4'>
+        <main className='flex-1 p-4 max-w-full'>
           <h1 className='text-2xl font-bold mb-6'>Vagas abertas</h1>
 
           {showAlert && (
@@ -149,8 +156,6 @@ const DashboardPage = () => {
                   <TableRow>
                     <TableHead>Empresa</TableHead>
                     <TableHead>Cargo</TableHead>
-                    <TableHead>Publicada em</TableHead>
-                    <TableHead>Aberta até</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -158,14 +163,13 @@ const DashboardPage = () => {
                     <TableRow key={job.id}>
                       <TableCell>{job.companyName}</TableCell>
                       <TableCell>{job.positionName}</TableCell>
-                      <TableCell>{job.publishDate}</TableCell>
-                      <TableCell>{job.endDate}</TableCell>
                       <TableCell>
                         <Button
                           onClick={() => handleApply(job.id)}
-                          className={
-                            job.applied ? 'bg-blue-500 hover:bg-blue-600' : ''
-                          }
+                          className={cn(
+                            'min-w-full',
+                            job.applied ? 'bg-blue-500 hover:bg-blue-600' : '',
+                          )}
                           disabled={job.applied}
                         >
                           {job.applied ? 'Inscrita' : 'Candidatar-se'}

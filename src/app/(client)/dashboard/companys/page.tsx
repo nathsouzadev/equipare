@@ -7,9 +7,11 @@ import {
   GlobeIcon,
   UsersIcon,
   CalendarIcon,
-  HomeIcon,
-  BriefcaseIcon,
+  MenuIcon,
 } from 'lucide-react';
+import { UserButton } from '@clerk/nextjs';
+import Sidebar from '@/components/Sidebar';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 
 // Mock data for multiple companies
 const companiesInfo = [
@@ -74,36 +76,44 @@ export default function CompanyListPage () {
   return (
     <div className='flex flex-col min-h-screen'>
       <header className='px-4 lg:px-6 h-14 flex items-center border-b'>
-        <Link href='/' className='flex items-center justify-center'>
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button
+              variant='ghost'
+              className='lg:hidden'
+              size='icon'
+              aria-label='Open menu'
+            >
+              <MenuIcon className='h-6 w-6' />
+            </Button>
+          </SheetTrigger>
+          <SheetContent side='left' className='w-64'>
+            <Sidebar />
+          </SheetContent>
+        </Sheet>
+        <Link
+          href='/'
+          className='flex items-center justify-center ml-4 lg:ml-0'
+        >
           <span className=''>Equipare</span>
         </Link>
+        <div className='ml-auto'>
+          <UserButton />
+        </div>
       </header>
 
       <div className='flex-1 flex'>
-        {/* Sidebar */}
-        <aside className='w-64 bg-gray-100 p-4'>
-          <nav className='space-y-2'>
-            <Link
-              href='/dashboard/offers'
-              className='flex items-center space-x-2 p-2 hover:bg-gray-200 rounded'
-            >
-              <BriefcaseIcon className='h-5 w-5' />
-              <span>Oportunidades</span>
-            </Link>
-            <Link
-              href='/dashboard/companys'
-              className='flex items-center space-x-2 p-2 hover:bg-gray-200 rounded'
-            >
-              <HomeIcon className='h-5 w-5' />
-              <span>Empresas</span>
-            </Link>
-          </nav>
+        <aside className='w-64 border-r bg-gray-100 p-4 hidden lg:block'>
+          <Sidebar />
         </aside>
 
         {/* Main Content */}
         <main className='flex-1 p-4 md:p-6 lg:p-8 overflow-auto'>
           <h1 className='text-3xl font-bold'>Empresas auditadas</h1>
-          <p className=' mb-6'>Confira a lista das empresas comprometidas com a equidade salarial no Brasil</p>
+          <p className=' mb-6'>
+            Confira a lista das empresas comprometidas com a equidade salarial
+            no Brasil
+          </p>
           <div className='space-y-6'>
             {companiesInfo.map((company) => (
               <Card key={company.id}>
