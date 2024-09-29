@@ -30,15 +30,19 @@ const Header = () => {
           <Sidebar />
         </SheetContent>
       </Sheet>
-      <div></div>
-      <Link href='/' className='flex items-center justify-center ml-4 lg:ml-0'>
-        <span className=''>Equipare</span>
-      </Link>
-      <Badge variant='secondary'>Versão demo</Badge>
+      <div className='flex flex-col px-auto'>
+        <Link
+          href='/'
+          className='flex items-center justify-center lg:ml-0'
+        >
+          Equipare
+        </Link>
+        <Badge variant='secondary'>Versão demo</Badge>
+      </div>
       <div className='flex items-center justify-center gap-2 ml-auto'>
         <Dialog>
           <DialogTrigger className='w-full'>
-            <Button>Avalie a plataforma</Button>
+            <Button className='bg-yellow-600/80'>Avalie a plataforma</Button>
           </DialogTrigger>
           <DialogContent className='bg-translucid border-0'>
             <DialogDescription>
