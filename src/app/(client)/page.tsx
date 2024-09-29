@@ -27,7 +27,7 @@ const Home = () => {
                   Bem vinda a Equipare
                 </h1>
                 <p className='mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400 text-justify'>
-                  Conecte-se com as empresas que estão comprometidas para reduzir a desigualdade salarial entre gêneros no Brasil
+                  Conectando mulheres com as empresas que estão comprometidas para reduzir a desigualdade salarial entre gêneros no Brasil
                 </p>
               </div>
             </div>
