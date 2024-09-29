@@ -26,8 +26,14 @@ const Home = () => {
                 <h1 className='text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none'>
                   Bem vinda a Equipare
                 </h1>
-                <p className='mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400 text-justify'>
+                <p className='mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400 text-justify py-4'>
                   Conectando mulheres com as empresas que estão comprometidas para reduzir a desigualdade salarial entre gêneros no Brasil
+                </p>
+                <p className='mx-auto max-w-[700px] text-gray-500 text-sm dark:text-gray-400 text-justify'>
+                Quer fazer parte de uma comunidade que valoriza a igualdade de gênero no trabalho? Nossa plataforma conecta mulheres talentosas a empresas que são certificadas por suas práticas justas, oferecendo igualdade salarial e de oportunidades.
+                </p>
+                <p className='mx-auto max-w-[700px] text-gray-500 text-sm dark:text-gray-400 text-justify'>
+                Além disso, você poderá acessar reviews honestos de quem já vivenciou essas culturas inclusivas, garantindo uma visão clara de onde realmente vale a pena trabalhar. Cadastre-se agora e faça parte de um banco de currículos acessado exclusivamente por empresas que comprovadamente promovem a equidade. Seu talento merece ser valorizado!
                 </p>
               </div>
             </div>
