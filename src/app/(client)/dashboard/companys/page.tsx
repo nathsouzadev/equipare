@@ -19,7 +19,7 @@ const companiesInfo = [
     jobModel: 'Híbrido',
     founded: '2015',
     employees: '250+',
-    website: 'www.techinnovatesolutions.com',
+    website: 'www.techinnovatesolutions.com.br',
   },
   {
     id: 2,
@@ -30,7 +30,7 @@ const companiesInfo = [
     jobModel: 'Remoto',
     founded: '2010',
     employees: '500+',
-    website: 'www.greenecosystems.com',
+    website: 'www.greenecosystems.com.br',
   },
   {
     id: 3,
@@ -41,7 +41,7 @@ const companiesInfo = [
     jobModel: 'Presencial',
     founded: '2018',
     employees: '150+',
-    website: 'www.healthtechinnovations.com',
+    website: 'www.healthtechinnovations.com.br',
   },
   {
     id: 4,
@@ -52,7 +52,7 @@ const companiesInfo = [
     jobModel: 'Híbrido',
     founded: '2012',
     employees: '300+',
-    website: 'www.datasphereanaly tics.com',
+    website: 'www.datasphereanaly tics.com.br',
   },
   {
     id: 5,
@@ -63,7 +63,7 @@ const companiesInfo = [
     jobModel: 'Remoto',
     founded: '2016',
     employees: '200+',
-    website: 'www.cybershieldsecurity.com',
+    website: 'www.cybershieldsecurity.com.br',
   },
 ];
 
