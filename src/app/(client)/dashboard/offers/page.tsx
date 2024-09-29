@@ -1,8 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { UserButton, useUser } from '@clerk/nextjs';
-import Link from 'next/link';
+import { useUser } from '@clerk/nextjs';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import {
@@ -14,12 +13,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import {
-  CheckCircle2Icon,
-  MenuIcon,
-} from 'lucide-react';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import Sidebar from '@/components/Sidebar';
+import { CheckCircle2Icon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const initialJobOpportunities = [
@@ -102,102 +96,52 @@ const DashboardPage = () => {
     );
 
   return (
-    <div className='flex flex-col min-h-screen'>
-      <header className='px-4 lg:px-6 h-14 flex items-center border-b'>
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button
-              variant='ghost'
-              className='lg:hidden'
-              size='icon'
-              aria-label='Open menu'
-            >
-              <MenuIcon className='h-6 w-6' />
-            </Button>
-          </SheetTrigger>
-          <SheetContent side='left' className='w-64'>
-            <Sidebar />
-          </SheetContent>
-        </Sheet>
-        <Link
-          href='/'
-          className='flex items-center justify-center ml-4 lg:ml-0'
-        >
-          <span className=''>Equipare</span>
-        </Link>
-        <div className='ml-auto'>
-          <UserButton />
-        </div>
-      </header>
+    <main className='flex-1 p-4 max-w-full'>
+      <h1 className='text-2xl font-bold mb-6'>Vagas abertas</h1>
 
-      <div className='flex-1 flex'>
-        <aside className='w-64 border-r bg-gray-100 p-4 hidden lg:block'>
-          <Sidebar />
-        </aside>
+      {showAlert && (
+        <Alert className='mb-4'>
+          <CheckCircle2Icon className='h-4 w-4' />
+          <AlertTitle>Candidatura feita com sucesso</AlertTitle>
+          <AlertDescription>
+            Confira seu e-mail para conferir os próximos passos
+          </AlertDescription>
+        </Alert>
+      )}
 
-        {/* Main Content */}
-        <main className='flex-1 p-4 max-w-full'>
-          <h1 className='text-2xl font-bold mb-6'>Vagas abertas</h1>
-
-          {showAlert && (
-            <Alert className='mb-4'>
-              <CheckCircle2Icon className='h-4 w-4' />
-              <AlertTitle>Candidatura feita com sucesso</AlertTitle>
-              <AlertDescription>
-                Confira seu e-mail para conferir os próximos passos
-              </AlertDescription>
-            </Alert>
-          )}
-
-          <Card>
-            <CardContent>
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>Empresa</TableHead>
-                    <TableHead>Cargo</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {jobOpportunities.map((job) => (
-                    <TableRow key={job.id}>
-                      <TableCell>{job.companyName}</TableCell>
-                      <TableCell>{job.positionName}</TableCell>
-                      <TableCell>
-                        <Button
-                          onClick={() => handleApply(job.id)}
-                          className={cn(
-                            'min-w-full',
-                            job.applied ? 'bg-blue-500 hover:bg-blue-600' : '',
-                          )}
-                          disabled={job.applied}
-                        >
-                          {job.applied ? 'Inscrita' : 'Candidatar-se'}
-                        </Button>
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </CardContent>
-          </Card>
-        </main>
-      </div>
-
-      <footer className='flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t'>
-        <p className='text-xs text-gray-500 dark:text-gray-400'>
-          © 2024 Equipare Inc. All rights reserved.
-        </p>
-        <nav className='sm:ml-auto flex gap-4 sm:gap-6'>
-          <Link className='text-xs hover:underline underline-offset-4' href='#'>
-            Terms of Service
-          </Link>
-          <Link className='text-xs hover:underline underline-offset-4' href='#'>
-            Privacy
-          </Link>
-        </nav>
-      </footer>
-    </div>
+      <Card>
+        <CardContent>
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Empresa</TableHead>
+                <TableHead>Cargo</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {jobOpportunities.map((job) => (
+                <TableRow key={job.id}>
+                  <TableCell>{job.companyName}</TableCell>
+                  <TableCell>{job.positionName}</TableCell>
+                  <TableCell>
+                    <Button
+                      onClick={() => handleApply(job.id)}
+                      className={cn(
+                        'min-w-full',
+                        job.applied ? 'bg-blue-500 hover:bg-blue-600' : '',
+                      )}
+                      disabled={job.applied}
+                    >
+                      {job.applied ? 'Inscrita' : 'Candidatar-se'}
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </CardContent>
+      </Card>
+    </main>
   );
 };
 
